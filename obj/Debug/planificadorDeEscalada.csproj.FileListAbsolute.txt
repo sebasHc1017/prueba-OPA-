@@ -1,0 +1,10 @@
+C:\Users\Sebastian\source\repos\planificadorDeEscalada\planificadorDeEscalada\bin\Debug\planificadorDeEscalada.exe
+C:\Users\Sebastian\source\repos\planificadorDeEscalada\planificadorDeEscalada\bin\Debug\planificadorDeEscalada.exe.config
+C:\Users\Sebastian\source\repos\planificadorDeEscalada\planificadorDeEscalada\obj\Debug\planificadorDeEscalada.csproj.AssemblyReference.cache
+C:\Users\Sebastian\source\repos\planificadorDeEscalada\planificadorDeEscalada\obj\Debug\planificadorDeEscalada.Form1.resources
+C:\Users\Sebastian\source\repos\planificadorDeEscalada\planificadorDeEscalada\obj\Debug\planificadorDeEscalada.Properties.Resources.resources
+C:\Users\Sebastian\source\repos\planificadorDeEscalada\planificadorDeEscalada\obj\Debug\planificadorDeEscalada.csproj.GenerateResource.cache
+C:\Users\Sebastian\source\repos\planificadorDeEscalada\planificadorDeEscalada\obj\Debug\planificadorDeEscalada.csproj.CoreCompileInputs.cache
+C:\Users\Sebastian\source\repos\planificadorDeEscalada\planificadorDeEscalada\obj\Debug\planificadorDeEscalada.exe
+C:\Users\Sebastian\source\repos\planificadorDeEscalada\planificadorDeEscalada\obj\Debug\planificadorDeEscalada.pdb
+C:\Users\Sebastian\source\repos\planificadorDeEscalada\planificadorDeEscalada\bin\Debug\planificadorDeEscalada.pdb
