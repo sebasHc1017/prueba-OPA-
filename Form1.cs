@@ -122,64 +122,64 @@ namespace planificadorDeEscalada
         }
 
 
-        private void GuardarDatosTabla()
-        {
-            double totalPeso = 0;
-            double totalCalorias = 0;
+    private void GuardarDatosTabla()
+     {
+         double totalPeso = 0;
+         double totalCalorias = 0;
+    
+         List<Tuple<int, double, double>> elementos = new List<Tuple<int, double, double>>();
+    
+         int indiceFila = 1;
 
-            List<string> listaPesos = new List<string>();
-            List<string> listaCalorias = new List<string>();
-            List<string> listaResultados = new List<string>();
-
-            int indiceFila = 1;
-
-            foreach (DataGridViewRow fila in dataGridView.Rows)
-            {
-                if (!fila.IsNewRow)
-                {
-                    string pesoTexto = fila.Cells["peso"].Value?.ToString() ?? string.Empty;
-                    string caloriasTexto = fila.Cells["calorias"].Value?.ToString() ?? string.Empty;
-
-                    if (double.TryParse(pesoTexto, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double peso) &&
-                        double.TryParse(caloriasTexto, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double calorias))
-                    {
-                        totalPeso += peso;
-                        totalCalorias += calorias;
-
-                        listaPesos.Add(pesoTexto);
-                        listaCalorias.Add(caloriasTexto);
-
-                        string resultadoFila = $"E{indiceFila} - Peso: {peso}, Calorías: {calorias}";
-                        listaResultados.Add(resultadoFila);
-
-                        indiceFila++;
-                    }
-                }
-            }
-
-            string pesoMaximoTexto = pesoMaximo.Text;
-            string caloriasMinimasTexto = caloriasMinimas.Text;
-
-            string mensajeInicio = $"Peso Máximo: {pesoMaximoTexto}, Calorías Mínimas: {caloriasMinimasTexto}";
-
-            string resultado = $"{mensajeInicio}\n\nResultados:\n{string.Join("\n", listaResultados)}\n\nTotal Peso: {totalPeso}\nTotal Calorías: {totalCalorias}";
-
-            if (double.TryParse(pesoMaximoTexto, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double pesoMaximoValor) &&
-                totalPeso > pesoMaximoValor)
-            {
-                resultado += $"\n\n¡Alerta! El peso total es mayor que el peso máximo ingresado.";
-            }
-
-            if (double.TryParse(caloriasMinimasTexto, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double caloriasMinimasValor) &&
-                totalCalorias < caloriasMinimasValor)
-            {
-                resultado += $"\n\n¡Alerta! Las calorías totales son menores que las calorías mínimas ingresadas.";
-            }
-
-            MessageBox.Show(resultado, "Datos Guardados");
-        }
-
-
-    }
+         foreach (DataGridViewRow fila in dataGridView.Rows)
+         {
+             if (!fila.IsNewRow)
+             {
+                 string pesoTexto = fila.Cells["peso"].Value?.ToString() ?? string.Empty;
+                 string caloriasTexto = fila.Cells["calorias"].Value?.ToString() ?? string.Empty;
+    
+                 if (double.TryParse(pesoTexto, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double peso) &&
+                     double.TryParse(caloriasTexto, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out double calorias))
+                 {
+    
+                     elementos.Add(new Tuple<int, double, double>(indiceFila, peso, calorias));
+    
+                     indiceFila++;
+                 }
+             }
+         }
+         string pesoMaximoTexto = pesoMaximo.Text;
+         string caloriasMinimasTexto = caloriasMinimas.Text;
+    
+         int pesoMaximoNumero = int.Parse(pesoMaximoTexto);
+         int caloriasMinimasNumero = int.Parse(caloriasMinimasTexto);
+    
+         string mensajeInicio = $"Peso Máximo: {pesoMaximoTexto}, Calorías Mínimas: {caloriasMinimasTexto}";
+         string resultado = $"{mensajeInicio}\n\nResultados:\n";
+    
+    
+         for (int i = 0; i < elementos.Count && pesoMaximoNumero > 0; i++)
+         {
+             if (pesoMaximoNumero >= elementos[i].Item2)
+             {
+                 double pesoD = elementos[i].Item2;
+                 int pesoT = Convert.ToInt32(pesoD);
+                 pesoMaximoNumero -= pesoT;
+    
+                 double caloriasD = elementos[i].Item3;
+                 int caloriasT = Convert.ToInt32(caloriasD);
+                 totalCalorias += caloriasT;
+    
+                 totalPeso += pesoT;
+                 resultado += $"Elemento ({elementos[i].Item1}): Peso: {elementos[i].Item2}, Calorías: {elementos[i].Item3}\n";
+             }
+         }
+    
+         resultado += $"\nTotal Peso: {totalPeso}";
+         resultado += $"\nTotal Calorías: {totalCalorias}";
+    
+         MessageBox.Show(resultado, "Datos Guardados");
+    
+     }
 
 }
